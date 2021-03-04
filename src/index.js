@@ -11,4 +11,21 @@ import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
-ReactDOM.render(<Provider store={ }><App /></Provider>, document.getElementById('root'));
+// rootSaga generator function
+function* rootSaga() {
+
+}
+
+const sagaMiddleware = createSagaMiddleware();
+// Store that all the components can use
+const storeInstance = createStore(
+  combineReducers({
+
+  }),
+  //sagaMiddleware for the store
+  applyMiddleware(sagaMiddleware, logger),
+);
+//rootSaga into our sagaMiddleware
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
