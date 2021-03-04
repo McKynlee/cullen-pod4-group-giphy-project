@@ -11,33 +11,32 @@ import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
-
-
-// Handle POST sent from Favorites when category selected:
+// Handle PUT sent from Favorites when new category selected:
 function* createCategory(action) {
   console.log('createCategory action:', action);
 
-  // POST selected category to the server:
-  // try {
-  //   yield axios.post('', action.payload);
+  // PUT/update selected category to the server:
+  try {
+    yield axios.put(`/api/favorite/${action.payload}`);
 
-  //   // Fetch the latest data from the server:
-  //   yield put({
-  //     type: 'FETCH_FAVORITES'
-  //   })
-  // }
-  // catch (err) {
-  //   console.log('category POST failed:', err);
-  // }
+    // Fetch the latest data from the server:
+    // yield put({
+    //   type: 'FETCH_FAVORITES'
+    // })
+  }
+  catch (err) {
+    console.log('category POST failed:', err);
+  }
 }
 
-function* createSearch(action)
-console.log('creatSearch action', action ); 
-
+function* createSearch(action) {
+  console.log('creatSearch action', action);
+}
 
 
 // rootSaga generator function
 function* rootSaga() {
+
   // Handle POST sent from Favorites when category selected:
   yield takeEvery('CREATE_CATEGORY', createCategory)
   yield takeEvery('CREATE_SEARCH', createSearch)
