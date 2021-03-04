@@ -19,6 +19,8 @@ function Favorites() {
   const handleCategoryChange = (userSelection) => {
     console.log('handleCategoryChange', selectedCategory);
     setSelectedCategory(userSelection);
+
+    // 
   }
 
   return (
