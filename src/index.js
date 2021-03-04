@@ -29,10 +29,14 @@ function* createCategory(action) {
   // }
 }
 
+function* createSearch(action)
+console.log('creatSearch action', action ); 
+
 // rootSaga generator function
 function* rootSaga() {
   // Handle POST sent from Favorites when category selected:
   yield takeEvery('CREATE_CATEGORY', createCategory)
+  yield takeEvery('CREATE_SEARCH', createSearch)
 
 }
 
