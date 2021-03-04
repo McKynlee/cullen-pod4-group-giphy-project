@@ -11,6 +11,7 @@ import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
+
 // reducer to store search results
 const searchGifReducer = (state = [], action) => {
   switch (action.type) {
@@ -45,6 +46,30 @@ function* fetchGifSearch(action) {
 // rootSaga generator function
 function* rootSaga() {
   yield takeEvery('FETCH_GIF_SEARCH', fetchGifSearch);
+
+// Handle POST sent from Favorites when category selected:
+function* createCategory(action) {
+  console.log('createCategory action:', action);
+
+  // POST selected category to the server:
+  // try {
+  //   yield axios.post('', action.payload);
+
+  //   // Fetch the latest data from the server:
+  //   yield put({
+  //     type: 'FETCH_FAVORITES'
+  //   })
+  // }
+  // catch (err) {
+  //   console.log('category POST failed:', err);
+  // }
+}
+
+// rootSaga generator function
+function* rootSaga() {
+  // Handle POST sent from Favorites when category selected:
+  yield takeEvery('CREATE_CATEGORY', createCategory)
+
 }
 
 const sagaMiddleware = createSagaMiddleware();
