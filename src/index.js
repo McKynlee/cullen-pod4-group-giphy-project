@@ -29,9 +29,9 @@ function* createCategory(action) {
   }
 }
 
-function* createSearch(action)
-console.log('creatSearch action', action);
-
+function* createSearch(action) {
+  console.log('creatSearch action', action);
+}
 
 
 // rootSaga generator function
@@ -41,7 +41,6 @@ function* rootSaga() {
   yield takeEvery('CREATE_CATEGORY', createCategory)
   yield takeEvery('CREATE_SEARCH', createSearch)
 
-  yield takeEvery('FETCH_GIF_SEARCH', fetchGifSearch);
 }
 // Saga made
 const sagaMiddleware = createSagaMiddleware();
