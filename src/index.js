@@ -11,6 +11,12 @@ import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
+// GET category info from db:
+function* fetchCategory(action) {
+
+}
+
+
 // Handle POST sent from Favorites when category selected:
 function* createCategory(action) {
   console.log('createCategory action:', action);
@@ -31,6 +37,9 @@ function* createCategory(action) {
 
 // rootSaga generator function
 function* rootSaga() {
+  // GET categories from db:
+  yield takeEvery('FETCH_CATEGORY', fetchCategory)
+
   // Handle POST sent from Favorites when category selected:
   yield takeEvery('CREATE_CATEGORY', createCategory)
 
