@@ -14,3 +14,11 @@ INSERT INTO "category" ("name")
 VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
 
 
+-- Favorite table
+CREATE TABLE "favorites" (
+	"id" SERIAL PRIMARY KEY,
+	"category_id" INT REFERENCES "category",
+	"giphy_id" VARCHAR(256)
+);
+
+SELECT * FROM favorites;
