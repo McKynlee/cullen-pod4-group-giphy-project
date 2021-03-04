@@ -43,7 +43,7 @@ function* rootSaga() {
   yield takeEvery('CREATE_SEARCH', createSearch)
 
 }
-
+// Saga made
 const sagaMiddleware = createSagaMiddleware();
 // Store that all the components can use
 const storeInstance = createStore(
