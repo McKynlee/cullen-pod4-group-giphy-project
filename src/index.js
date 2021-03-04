@@ -11,6 +11,10 @@ import axios from 'axios';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 
+// rootSaga generator function
+function* rootSaga() {
+  yield takeEvery('FETCH_GIF_SEARCH', fetchGifSearch);
+
 // Handle POST sent from Favorites when category selected:
 function* createCategory(action) {
   console.log('createCategory action:', action);
