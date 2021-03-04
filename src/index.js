@@ -31,6 +31,18 @@ function* createCategory(action) {
 
 function* createSearch(action) {
   console.log('creatSearch action', action);
+
+  let response = yield axios.get(`/api/search/${action.payload}`);
+
+  try {
+    yield put({
+      type: 'SET_SEARCH',
+      payload: response.data
+    })
+  }
+  catch (error) {
+    console.log('error in createSearch', error)
+  }
 }
 
 
@@ -42,12 +54,21 @@ function* rootSaga() {
   yield takeEvery('CREATE_SEARCH', createSearch)
 
 }
+
+// Create reducer to handle search results received from Giphy:
+const searchResults = (state = [], action) => {
+  if (action.type === 'SET_SEARCH') {
+    return action.payload;
+  }
+  return state;
+}
+
 // Saga made
 const sagaMiddleware = createSagaMiddleware();
 // Store that all the components can use
 const storeInstance = createStore(
   combineReducers({
-
+    searchResults
   }),
   //sagaMiddleware for the store
   applyMiddleware(sagaMiddleware, logger),
