@@ -1,5 +1,9 @@
 import React from 'react';
+import Search from '../Search/Search';
+import Favorites from '../Favorites/Favorites';
 
+<Search />
+<Favorites />
 function App(props) {
   return (
     <div>
