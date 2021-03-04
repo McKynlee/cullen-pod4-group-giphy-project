@@ -5,6 +5,8 @@ const app = express();
 // App PORT set with production check
 const PORT = process.env.PORT || 5000;
 
+require('dotenv').config() // protect those keys! npm install dontenv
+
 // Route includes
 const favoriteRouter = require('./routes/favorite.router');
 const categoryRouter = require('./routes/category.router');

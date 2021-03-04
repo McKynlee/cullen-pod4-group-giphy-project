@@ -8,16 +8,17 @@ router.get('/', (req, res) => {
   axios.get('https://api.giphy.com/v1/gifs/search', {
     params: {
       api_key: process.env.GIPHY_API_KEY,
-      limit: 10,
       //send the search item to GIPHY
-      q: 'test'
+      q: 'cheeseburgers',
+      limit: 10
+      
     }
   })
   .then((response) => {
     res.send(response.data);
   })
   .catch((error) => {
-    console.log('error getting search')
+    console.log('error getting search', error)
   })
 });
 
