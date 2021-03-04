@@ -16,45 +16,48 @@ function* fetchCategory(action) {
 
 }
 
-
-// Handle POST sent from Favorites when category selected:
-function* createCategory(action) {
-  console.log('createCategory action:', action);
-
-  // POST selected category to the server:
-  // try {
-  //   yield axios.post('', action.payload);
-
-  //   // Fetch the latest data from the server:
-  //   yield put({
-  //     type: 'FETCH_FAVORITES'
-  //   })
-  // }
-  // catch (err) {
-  //   console.log('category POST failed:', err);
-  // }
-}
-
 // rootSaga generator function
 function* rootSaga() {
-  // GET categories from db:
-  yield takeEvery('FETCH_CATEGORY', fetchCategory)
+  yield takeEvery('FETCH_GIF_SEARCH', fetchGifSearch);
 
   // Handle POST sent from Favorites when category selected:
-  yield takeEvery('CREATE_CATEGORY', createCategory)
+  function* createCategory(action) {
+    console.log('createCategory action:', action);
 
-}
+    // POST selected category to the server:
+    // try {
+    //   yield axios.post('', action.payload);
 
-const sagaMiddleware = createSagaMiddleware();
-// Store that all the components can use
-const storeInstance = createStore(
-  combineReducers({
+    //   // Fetch the latest data from the server:
+    //   yield put({
+    //     type: 'FETCH_FAVORITES'
+    //   })
+    // }
+    // catch (err) {
+    //   console.log('category POST failed:', err);
+    // }
+  }
 
-  }),
-  //sagaMiddleware for the store
-  applyMiddleware(sagaMiddleware, logger),
-);
-//rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+  // rootSaga generator function
+  function* rootSaga() {
+    // GET categories from db:
+    yield takeEvery('FETCH_CATEGORY', fetchCategory)
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
+    // Handle POST sent from Favorites when category selected:
+    yield takeEvery('CREATE_CATEGORY', createCategory)
+
+  }
+
+  const sagaMiddleware = createSagaMiddleware();
+  // Store that all the components can use
+  const storeInstance = createStore(
+    combineReducers({
+
+    }),
+    //sagaMiddleware for the store
+    applyMiddleware(sagaMiddleware, logger),
+  );
+  //rootSaga into our sagaMiddleware
+  sagaMiddleware.run(rootSaga);
+
+  ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
