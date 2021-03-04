@@ -16,6 +16,8 @@ router.post('/', (req, res) => {
 // update given favorite with a category id
 router.put('/:favId', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
+  console.log('PUT req.body:', req.body, 'req.params:', req.params);
+
   res.sendStatus(200);
 });
 

@@ -17,10 +17,14 @@ function Favorites() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleCategoryChange = (userSelection) => {
-    console.log('handleCategoryChange', selectedCategory);
+    console.log('handleCategoryChange', userSelection);
     setSelectedCategory(userSelection);
 
-    // 
+    // send selected category to Saga:
+    dispatch({
+      type: 'CREATE_CATEGORY',
+      payload: userSelection
+    })
   }
 
   return (
@@ -40,7 +44,6 @@ function Favorites() {
         <option value="4">NSFW</option>
         <option value="5">Meme</option>
       </select>
-      <div>{selectedCategory}</div>
     </>
   )
 }
