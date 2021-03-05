@@ -38,14 +38,15 @@ function Favorites() {
   return (
     <>
       <h1>Your favorite GIFs!</h1>
-        {/* selector for categories */}
-        {/* will map through search results and render dropdown
+      {/* selector for categories */}
+      {/* will map through search results and render dropdown
         with each item */}
       <div>
         {favoriteList.map((image) => {
           return (
             <div> 
               <img src={image.giphy_url} key={image.id} />
+
               <select name="category"
                 value={selectedCategory}
                 id="category"
@@ -59,8 +60,8 @@ function Favorites() {
               </select>
             </div>
           )
-        })}  
-        </div>
+        })}
+      </div>
     </>
   )
 }
