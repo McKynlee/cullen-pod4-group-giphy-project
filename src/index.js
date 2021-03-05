@@ -45,22 +45,13 @@ function* createSearch(action) {
   }
 }
 
-// send favorites to router and then send the response to the favorite reducer
+// send favorites to router
 function* addFavorite(action) {
   console.log('addFavorite action', action);
 
-  // send get request along with favorite IDs to favorite router
-  // let response = yield axios.get(`/api/favorite/${action.payload}`);
+  // send post request along with favorite url to favorite router
+  yield axios.post(`/api/favorite/`, action.payload);
 
-  try {
-    yield put({
-      type: 'SET_FAVORITES',
-      payload: response.data
-    })
-  }
-  catch (error) {
-    console.log('error in addFavorite', error);
-  }
 } // end addFavorite
 
 // rootSaga generator function

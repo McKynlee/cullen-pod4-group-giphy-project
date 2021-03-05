@@ -13,12 +13,16 @@ CREATE TABLE "category" (
 INSERT INTO "category" ("name")
 VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
 
+SELECT * FROM category;
+
+-- drop favorites table
+DROP TABLE favorites;
 
 -- Favorite table
 CREATE TABLE "favorites" (
 	"id" SERIAL PRIMARY KEY,
 	"category_id" INT REFERENCES "category",
-	"giphy_id" VARCHAR(256)
+	"giphy_url" VARCHAR(256)
 );
 
 SELECT * FROM favorites;

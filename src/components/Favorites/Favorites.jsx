@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Favorites() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchFavorites();
-  }, []);
+  // useEffect(() => {
+  //   fetchFavorites();
+  // }, []);
 
   // dispatch a request to get favorites
   const fetchFavorites = useSelector(store => {
