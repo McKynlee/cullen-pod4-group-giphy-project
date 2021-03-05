@@ -9,9 +9,10 @@ function Favorites() {
   }, []);
 
   // dispatch a request to get favorites
-  const fetchFavorites = () => {
+  const fetchFavorites = useSelector(store => {
     console.log('fetching favorites');
-  }
+    return store.favoriteResults;
+  })
 
   // Variable to capture selected value in dropdown:
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -30,20 +31,29 @@ function Favorites() {
   return (
     <>
       <h1>Your favorite GIFs!</h1>
-      {/* selector for categories */}
-      {/* will map through search results and render dropdown
-      with each item */}
-      <select name="category"
-        value={selectedCategory}
-        id="category"
-        onChange={(event) => handleCategoryChange(event.target.value)}>
-        <option value="">Choose Category</option>
-        <option value="1">Funny</option>
-        <option value="2">Cohort</option>
-        <option value="3">Cartoon</option>
-        <option value="4">NSFW</option>
-        <option value="5">Meme</option>
-      </select>
+        {/* selector for categories */}
+        {/* will map through search results and render dropdown
+        with each item */}
+      <div>
+        {fetchFavorites.map((image) => {
+          return (
+            <div> 
+              <img src={image.giphy} key={image.id} />
+              <select name="category"
+                value={selectedCategory}
+                id="category"
+                onChange={(event) => handleCategoryChange(event.target.value)}>
+                <option value="">Choose Category</option>
+                <option value="1">Funny</option>
+                <option value="2">Cohort</option>
+                <option value="3">Cartoon</option>
+                <option value="4">NSFW</option>
+                <option value="5">Meme</option>
+              </select>
+            </div>
+          )
+        })}  
+        </div>
     </>
   )
 }

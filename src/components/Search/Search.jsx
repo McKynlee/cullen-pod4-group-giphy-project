@@ -43,23 +43,23 @@ function Search() {
 
   return (
     <div>
-      <form>
-        <input
-          type="text"
-          placeholder="Search for a GIF"
-          onChange={() => handleChange(event.target.value)}
-          value={newSearch}
-        />
-        <button onClick={searchButton}>Search</button>
-      </form>
-      <div>
-        {searchResults.map((giphy) => {
-          return (
-            <img src={giphy.images.fixed_height.url}
-              key={giphy.id} />
-          )
-        })}
-      </div>
+    <form>
+      <input
+        type="text"
+        placeholder="Search for a GIF"
+        onChange={() => handleChange(event.target.value)}
+        value={newSearch}
+      />
+      <button onClick={searchButton}>Search</button>
+    </form>
+    <div>
+      {searchResults.map((giphy) => {
+        return ( 
+        <img src={giphy.images.fixed_height.url} 
+        key={giphy.id} />
+        )
+      })}
+    </div>
     </div>
 
   )
