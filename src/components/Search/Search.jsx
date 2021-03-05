@@ -45,7 +45,7 @@ function Search() {
     <div>
       {searchResults.map((giphy) => {
         return ( 
-        <img src={giphy.images.original.url} 
+        <img src={giphy.images.fixed_height.url} 
         key={giphy.id} />
         )
       })}
