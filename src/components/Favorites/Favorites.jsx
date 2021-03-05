@@ -9,10 +9,17 @@ function Favorites() {
   }, []);
 
   // dispatch a request to get favorites
-  const fetchFavorites = useSelector(store => {
-    console.log('fetching favorites');
-    return store.favoriteResults;
-  })
+  const fetchFavorites = () => {
+    dispatch({
+      type: 'FETCH_FAVORITES'
+    })
+    console.log('favorites', favoriteList);
+  }
+  
+  const favoriteList = useSelector(store => store.favoriteResults)
+
+  console.log('favoriteList', favoriteList);
+
 
   // Variable to capture selected value in dropdown:
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -35,10 +42,11 @@ function Favorites() {
       {/* will map through search results and render dropdown
         with each item */}
       <div>
-        {fetchFavorites.map((image) => {
+        {favoriteList.map((image) => {
           return (
-            <div>
-              <img src={image.giphy} key={image.id} />
+            <div> 
+              <img src={image.giphy_url} key={image.id} />
+
               <select name="category"
                 value={selectedCategory}
                 id="category"

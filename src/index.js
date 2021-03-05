@@ -45,13 +45,21 @@ function* createSearch(action) {
   }
 }
 
-// send favorites to router and then send the response to the favorite reducer
+// send favorites to router
 function* addFavorite(action) {
   console.log('addFavorite action', action);
 
-  // send get request along with favorite IDs to favorite router
-  let response = yield axios.get(`/api/favorite/${action.payload}`);
+  // send post request along with favorite url to favorite router
+  yield axios.post(`/api/favorite/`, action.payload);
 
+} // end addFavorite
+
+function* fetchFavorites(action) {
+  let response = yield axios.get('/api/favorite')
+
+  // console.log('action.payload in fetchFav:', action.payload);
+  console.log('fetchFav response:', response);
+  
   try {
     yield put({
       type: 'SET_FAVORITES',
@@ -59,9 +67,9 @@ function* addFavorite(action) {
     })
   }
   catch (error) {
-    console.log('error in addFavorite', error);
+    console.log('error in addFavorite', error)
   }
-} // end addFavorite
+}
 
 // rootSaga generator function
 function* rootSaga() {
@@ -70,7 +78,7 @@ function* rootSaga() {
   yield takeEvery('CREATE_CATEGORY', createCategory)
   yield takeEvery('CREATE_SEARCH', createSearch)
   yield takeEvery('ADD_FAVORITE', addFavorite)
-
+  yield takeEvery('FETCH_FAVORITES', fetchFavorites)
 }
 
 // Create reducer to handle search results received from Giphy:
@@ -83,11 +91,12 @@ const searchResults = (state = [], action) => {
 
 // reducer to handle our favorites
 const favoriteResults = (state = [], action) => {
-  if (action === 'SET_FAVORITES') {
+  if (action.type === 'SET_FAVORITES') {
     return action.payload;
   }
   return state;
 }
+console.log('favoriteResults is ', favoriteResults)
 
 // Saga made
 const sagaMiddleware = createSagaMiddleware();
