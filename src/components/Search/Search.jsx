@@ -59,6 +59,7 @@ function Search() {
         key={giphy.id} />
         )
       })}
+      <button onClick={() => addFavorite(giphy)}>Favorite this!</button>
     </div>
     </div>
 
