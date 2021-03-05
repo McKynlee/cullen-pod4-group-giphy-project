@@ -29,27 +29,37 @@ function Search() {
     return store.searchResults
   })
 
-  console.log('looking for search', searchResults);
+  // console.log('looking for search', searchResults);
+
+  // Handle when use clicks to add an  image to favorites:
+  const addFavorite = (giphy) => {
+    let imageToAdd = giphy.images.fixed_height.url;
+
+    dispatch({
+      type: 'ADD_FAVORITE',
+      payload: imageToAdd
+    })
+  }
 
   return (
     <div>
-    <form>
-      <input
-        type="text"
-        placeholder="Search for a GIF"
-        onChange={() => handleChange(event.target.value)}
-        value={newSearch}
-      />
-      <button onClick={searchButton}>Search</button>
-    </form>
-    <div>
-      {searchResults.map((giphy) => {
-        return ( 
-        <img src={giphy.images.original.url} 
-        key={giphy.id} />
-        )
-      })}
-    </div>
+      <form>
+        <input
+          type="text"
+          placeholder="Search for a GIF"
+          onChange={() => handleChange(event.target.value)}
+          value={newSearch}
+        />
+        <button onClick={searchButton}>Search</button>
+      </form>
+      <div>
+        {searchResults.map((giphy) => {
+          return (
+            <img src={giphy.images.fixed_height.url}
+              key={giphy.id} />
+          )
+        })}
+      </div>
     </div>
 
   )
