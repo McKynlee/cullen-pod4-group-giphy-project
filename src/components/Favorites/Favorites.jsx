@@ -34,26 +34,26 @@ function Favorites() {
         {/* selector for categories */}
         {/* will map through search results and render dropdown
         with each item */}
-        <div>
-          {fetchFavorites.map((giphy) => {
-            return (
-              <div> 
-                <img src={giphy.images.fixed_height.url} key={giphy.id} />
-                <select name="category"
-                  value={selectedCategory}
-                  id="category"
-                  onChange={(event) => handleCategoryChange(event.target.value)}>
-                  <option value="">Choose Category</option>
-                  <option value="1">Funny</option>
-                  <option value="2">Cohort</option>
-                  <option value="3">Cartoon</option>
-                  <option value="4">NSFW</option>
-                  <option value="5">Meme</option>
-                </select>
-              </div>
-            )
-          })}  
-          </div>
+      <div>
+        {fetchFavorites.map((image) => {
+          return (
+            <div> 
+              <img src={image.giphy} key={image.id} />
+              <select name="category"
+                value={selectedCategory}
+                id="category"
+                onChange={(event) => handleCategoryChange(event.target.value)}>
+                <option value="">Choose Category</option>
+                <option value="1">Funny</option>
+                <option value="2">Cohort</option>
+                <option value="3">Cartoon</option>
+                <option value="4">NSFW</option>
+                <option value="5">Meme</option>
+              </select>
+            </div>
+          )
+        })}  
+        </div>
     </>
   )
 }

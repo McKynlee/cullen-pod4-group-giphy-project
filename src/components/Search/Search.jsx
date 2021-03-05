@@ -29,7 +29,17 @@ function Search() {
     return store.searchResults
   })
 
-  console.log('looking for search', searchResults);
+  // console.log('looking for search', searchResults);
+
+  // Handle when use clicks to add an  image to favorites:
+  const addFavorite = (giphy) => {
+    let imageToAdd = giphy.images.fixed_height.url;
+
+    dispatch({
+      type: 'ADD_FAVORITE',
+      payload: imageToAdd
+    })
+  }
 
   return (
     <div>
