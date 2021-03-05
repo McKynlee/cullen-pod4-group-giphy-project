@@ -81,12 +81,21 @@ const searchResults = (state = [], action) => {
   return state;
 }
 
+// reducer to handle our favorites
+const favoriteResults = (state = [], action) => {
+  if (action === 'SET_FAVORITES') {
+    return action.payload;
+  }
+  return state;
+}
+
 // Saga made
 const sagaMiddleware = createSagaMiddleware();
 // Store that all the components can use
 const storeInstance = createStore(
   combineReducers({
-    searchResults
+    searchResults,
+    favoriteResults
   }),
   //sagaMiddleware for the store
   applyMiddleware(sagaMiddleware, logger),
