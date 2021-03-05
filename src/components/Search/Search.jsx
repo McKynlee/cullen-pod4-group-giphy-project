@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-function Search () {
+function Search() {
 
   const dispatch = useDispatch();
 
@@ -14,27 +14,33 @@ function Search () {
     event.preventDefault();
     console.log('searching!');
     dispatch({
-      type: 'FETCH_GIF_SEARCH',
-      payload: newSearch, 
+      type: 'CREATE_SEARCH',
+      payload: newSearch,
     })
   }
 
   const handleChange = (userInput) => {
-  console.log('handle it', userInput);
-  setSearch(userInput);
+    console.log('handle it', userInput);
+    setSearch(userInput);
   }
-  
+
+  // Bring in data from redux store to later render search results:
+  let searchResults = useSelector(store => {
+    return store.searchResults
+  })
+
+  console.log(searchResults);
 
   return (
-    <form>  
-      <input 
+    <form>
+      <input
         type="text"
         placeholder="Search for a GIF"
         onChange={() => handleChange(event.target.value)}
         value={newSearch}
       />
       <button onClick={searchButton}>Search</button>
-    </form>  
+    </form>
   )
 };
 
