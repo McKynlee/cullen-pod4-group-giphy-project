@@ -64,7 +64,6 @@ function Search() {
         })}
       </div>
     </div>
-
   )
 };
 

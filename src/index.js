@@ -50,7 +50,7 @@ function* addFavorite(action) {
   console.log('addFavorite action', action);
 
   // send get request along with favorite IDs to favorite router
-  // let response = yield axios.get(`/api/favorite/${action.payload}`);
+  let response = yield axios.get(`/api/favorite/${action.payload}`);
 
   try {
     yield put({

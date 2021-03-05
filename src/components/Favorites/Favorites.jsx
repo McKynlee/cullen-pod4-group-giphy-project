@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Favorites() {
   const dispatch = useDispatch();
@@ -31,13 +31,13 @@ function Favorites() {
   return (
     <>
       <h1>Your favorite GIFs!</h1>
-        {/* selector for categories */}
-        {/* will map through search results and render dropdown
+      {/* selector for categories */}
+      {/* will map through search results and render dropdown
         with each item */}
       <div>
         {fetchFavorites.map((image) => {
           return (
-            <div> 
+            <div>
               <img src={image.giphy} key={image.id} />
               <select name="category"
                 value={selectedCategory}
@@ -52,8 +52,8 @@ function Favorites() {
               </select>
             </div>
           )
-        })}  
-        </div>
+        })}
+      </div>
     </>
   )
 }
