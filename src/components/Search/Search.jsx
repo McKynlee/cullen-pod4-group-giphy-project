@@ -29,9 +29,10 @@ function Search() {
     return store.searchResults
   })
 
-  console.log(searchResults);
+  console.log('looking for search', searchResults);
 
   return (
+    <div>
     <form>
       <input
         type="text"
@@ -41,6 +42,16 @@ function Search() {
       />
       <button onClick={searchButton}>Search</button>
     </form>
+    <div>
+      {searchResults.map((giphy) => {
+        return ( 
+        <img src={giphy.images.original.url} 
+        key={giphy.id} />
+        )
+      })}
+    </div>
+    </div>
+
   )
 };
 

@@ -58,7 +58,7 @@ function* rootSaga() {
 // Create reducer to handle search results received from Giphy:
 const searchResults = (state = [], action) => {
   if (action.type === 'SET_SEARCH') {
-    return action.payload;
+    return action.payload.data;
   }
   return state;
 }
