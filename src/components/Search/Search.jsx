@@ -55,11 +55,13 @@ function Search() {
     <div>
       {searchResults.map((giphy) => {
         return ( 
-        <img src={giphy.images.fixed_height.url} 
-        key={giphy.id} />
+        <div>
+          <img src={giphy.images.fixed_height.url} 
+          key={giphy.id} />
+          <button onClick={() => addFavorite(giphy)}>Favorite this!</button>
+        </div>    
         )
       })}
-      <button onClick={() => addFavorite(giphy)}>Favorite this!</button>
     </div>
     </div>
 
