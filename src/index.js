@@ -45,6 +45,23 @@ function* createSearch(action) {
   }
 }
 
+// send favorites to router and then send the response to the favorite reducer
+function* addFavorite(action) {
+  console.log('addFavorite action', action);
+
+  // send get request along with favorite IDs to favorite router
+  let response = yield axios.get(`/api/favorite/${action.payload}`);
+
+  try {
+    yield put({
+      type: 'SET_FAVORITES',
+      payload: response.data
+    })
+  }
+  catch (error) {
+    console.log('error in addFavorite', error);
+  }
+} // end addFavorite
 
 // rootSaga generator function
 function* rootSaga() {
@@ -52,6 +69,7 @@ function* rootSaga() {
   // Handle POST sent from Favorites when category selected:
   yield takeEvery('CREATE_CATEGORY', createCategory)
   yield takeEvery('CREATE_SEARCH', createSearch)
+  yield takeEvery('ADD_FAVORITE', addFavorite)
 
 }
 
@@ -63,12 +81,21 @@ const searchResults = (state = [], action) => {
   return state;
 }
 
+// reducer to handle our favorites
+const favoriteResults = (state = [], action) => {
+  if (action === 'SET_FAVORITES') {
+    return action.payload;
+  }
+  return state;
+}
+
 // Saga made
 const sagaMiddleware = createSagaMiddleware();
 // Store that all the components can use
 const storeInstance = createStore(
   combineReducers({
-    searchResults
+    searchResults,
+    favoriteResults
   }),
   //sagaMiddleware for the store
   applyMiddleware(sagaMiddleware, logger),
