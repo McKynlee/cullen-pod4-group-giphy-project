@@ -1,11 +1,27 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const axios = require('axios');
 
 const router = express.Router();
 
 // return all favorite images
-router.get('/', (req, res) => {
-  res.sendStatus(200);
+router.get('/:ids', (req, res) => {
+
+  let gifIds = req.params.ids;
+
+  axios.get('https://api.giphy.com/v1/gifs', {
+    params: {
+      api_key: process.env.GIPHY_API_KEY,
+      ids: gifIds
+    }
+  })
+  .then((response) => {
+    res.send(response.data);
+    res.sendStatus(200);
+  })
+  .catch((error) => {
+    console.log('error getting favorites', error)
+  })  
 });
 
 // add a new favorite
